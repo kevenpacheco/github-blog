@@ -15,11 +15,15 @@ export const GlobalStyles = createGlobalStyle`
   body {
     background-color: ${({ theme }) => theme.colors.base.background};
     color: ${({ theme }) => theme.colors.base.text};
+  }
+  
+  body, input, textarea, button {
+    font: 400 1rem 'Nunito';
     --webkit-font-smoothing: antialiased;
+    line-height: 160%;
   }
 
-  body, input, textarea, button {
-    font: 400 1rem 'Nunito', sans-serif;
-    line-height: 160%;
+  h1, h2, h3, h4, h5, h6 {
+    color: ${({ theme }) => theme.colors.base.title}
   }
 `;
