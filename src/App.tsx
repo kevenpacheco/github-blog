@@ -1,6 +1,7 @@
 import { ThemeProvider } from "styled-components";
 import { Header } from "./components/Header";
 import { Home } from "./Pages/Home";
+import { Publication } from "./Pages/Publication";
 import { GlobalStyles } from "./styles/global";
 import { DefaultTheme } from "./styles/themes/defaultTheme";
 
@@ -10,8 +11,9 @@ export function App() {
       <GlobalStyles />
 
       <Header />
-      
-      <Home />
+
+      {/* <Home /> */}
+      <Publication />
     </ThemeProvider>
   );
 }
