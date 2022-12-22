@@ -2,7 +2,7 @@ import * as S from './styles'
 
 export function PublicationCard() {
   return (
-    <S.PublicationCardContainer>
+    <S.PublicationCardContainer to="/publicacao">
       <header>
         <h3>JavaScript data types and data structures</h3>
 
