@@ -24,7 +24,7 @@ export function ProfileCard() {
   const [profile, setProfile] = useState<ProfileType | null>(null);
 
   useEffect(() => {
-    api.get("users/kevenpacheco").then((response) => setProfile(response.data));
+    api.get("/users/kevenpacheco").then((response) => setProfile(response.data));
   }, []);
 
   return (
