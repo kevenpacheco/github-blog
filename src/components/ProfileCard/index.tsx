@@ -5,7 +5,7 @@ import {
   faUserGroup,
 } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { Link } from "../Link";
+import { ExternalLink } from "../Links/External";
 import * as S from "./styles";
 
 export function ProfileCard() {
@@ -17,9 +17,9 @@ export function ProfileCard() {
         <header>
           <h2>Cameron Williamson</h2>
 
-          <Link>
+          <ExternalLink to="https://github.com/kevenpacheco">
             github <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
-          </Link>
+          </ExternalLink>
         </header>
 
         <p>

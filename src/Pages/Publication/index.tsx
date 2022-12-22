@@ -1,4 +1,5 @@
-import { Link } from "../../components/Link";
+import { ExternalLink } from "../../components/Links/External";
+import { InternalLink } from "../../components/Links/Internal";
 import { BaseLayout } from "../../layouts/BaseLayout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -15,13 +16,13 @@ export function Publication() {
     <BaseLayout>
       <S.PublicationHeaderContainer>
         <div>
-          <Link>
+          <InternalLink to="/">
             <FontAwesomeIcon icon={faChevronLeft} /> voltar
-          </Link>
+          </InternalLink>
 
-          <Link>
+          <ExternalLink to="https://github.com/kevenpacheco">
             ver no github <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
-          </Link>
+          </ExternalLink>
         </div>
 
         <h2>JavaScript data types and data structures</h2>

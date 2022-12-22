@@ -1,16 +1,19 @@
 import { describe, expect, it } from "vitest";
 import { render, screen } from "@testing-library/react";
-import { Link } from ".";
 import { ThemeProvider } from "styled-components";
-import { DefaultTheme } from "../../styles/themes/defaultTheme";
+import { DefaultTheme } from "../../../styles/themes/defaultTheme";
+import { InternalLink } from ".";
+import { BrowserRouter } from "react-router-dom";
 
 describe("<Link />", () => {
-  it("should render Link component", () => {
+  it("should render InternalLink component", () => {
     const linkText = "Texto do link";
 
     render(
       <ThemeProvider theme={DefaultTheme}>
-        <Link>{linkText}</Link>
+        <BrowserRouter>
+          <InternalLink to="#">{linkText}</InternalLink>
+        </BrowserRouter>
       </ThemeProvider>
     );
 
