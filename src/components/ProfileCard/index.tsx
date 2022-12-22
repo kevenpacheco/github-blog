@@ -7,41 +7,57 @@ import {
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { ExternalLink } from "../Links/External";
 import * as S from "./styles";
+import { useEffect, useState } from "react";
+import { api } from "../../service/api";
+
+interface ProfileType {
+  avatar_url: string;
+  name: string;
+  html_url: string;
+  bio: string;
+  login: string;
+  company: string;
+  followers: number;
+}
 
 export function ProfileCard() {
+  const [profile, setProfile] = useState<ProfileType | null>(null);
+
+  useEffect(() => {
+    api.get("users/kevenpacheco").then((response) => setProfile(response.data));
+  }, []);
+
   return (
     <S.ProfileCardContainer>
-      <img src="https://github.com/kevenpacheco.png" height="148" width="148" />
+      <img src={profile?.avatar_url} height="148" width="148" />
 
       <div>
         <header>
-          <h2>Cameron Williamson</h2>
+          <h2>{profile?.name}</h2>
 
-          <ExternalLink to="https://github.com/kevenpacheco">
+          <ExternalLink to={profile?.html_url || ""} target="_blank">
             github <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
           </ExternalLink>
         </header>
 
-        <p>
-          Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu
-          viverra massa quam dignissim aenean malesuada suscipit. Nunc, volutpat
-          pulvinar vel mass.
-        </p>
+        <p>{profile?.bio}</p>
 
         <footer>
           <S.GithubContainer>
             <FontAwesomeIcon icon={faGithub} size="lg" />
-            cameronwll
+            {profile?.login}
           </S.GithubContainer>
 
-          <S.CompanyContainer>
-            <FontAwesomeIcon icon={faBuilding} />
-            Rocketseat
-          </S.CompanyContainer>
+          {!!profile?.company && (
+            <S.CompanyContainer>
+              <FontAwesomeIcon icon={faBuilding} />
+              {profile?.company}
+            </S.CompanyContainer>
+          )}
 
           <S.FollowersContainer>
             <FontAwesomeIcon icon={faUserGroup} />
-            32 seguidores
+            {`${profile?.followers} seguidores`}
           </S.FollowersContainer>
         </footer>
       </div>
