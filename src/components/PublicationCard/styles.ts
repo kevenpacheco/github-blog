@@ -17,13 +17,14 @@ export const PublicationCardContainer = styled(Link)`
 
   header {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     gap: 1.5rem;
 
     h3 {
       color: ${({ theme }) => theme.colors.base.title};
       font-size: 1.25rem;
+      flex: 1;
     }
 
     span {
@@ -33,11 +34,39 @@ export const PublicationCardContainer = styled(Link)`
     }
   }
 
-  p {
-    margin-top: 1.25rem;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 4;
-    overflow: hidden;
+  div {
+  }
+  `;
+
+export const PublicationCardContent = styled.div`
+  margin-top: 1.25rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+
+  ul, p, h2, h3 {
+    margin-bottom: 16px;
+  }
+
+  h2, h3 {
+    margin-top: 24px;
+  }
+
+  ul {
+    padding-left: 28px;
+  }
+
+  h2 {
+    border-bottom: 1px solid #21262d;
+  }
+
+  a {
+    color: #58a6ff;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 `;

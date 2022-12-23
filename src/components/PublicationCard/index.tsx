@@ -1,24 +1,44 @@
-import * as S from './styles'
+import { PublicationType } from "../../@types/Publication";
+import * as S from "./styles";
+import { format, formatDistanceToNow } from 'date-fns'
+import ptBRLocale from 'date-fns/locale/pt-BR'
+import ReactMarkdown from 'react-markdown'
 
-export function PublicationCard() {
+interface PublicationCardPropType {
+  data: PublicationType
+}
+
+export function PublicationCard({ data }: PublicationCardPropType) {
+  const { title, created_at, body } = data;
+
+  const creationDateRelativeToNow = formatDistanceToNow(new Date(created_at), {
+    locale: ptBRLocale,
+  })
+
+  const publishedDateFormatted = format(
+    new Date(created_at),
+    "d 'de' LLLL 'às' HH:mm'h'",
+    { locale: ptBRLocale }
+  );
+
   return (
     <S.PublicationCardContainer to="/publicacao">
       <header>
-        <h3>JavaScript data types and data structures</h3>
+        <h3>{title}</h3>
 
-        <span>Há 1 dia</span>
+        <time
+          title={publishedDateFormatted}
+          dateTime={created_at}
+        >
+          {creationDateRelativeToNow}
+        </time>
       </header>
 
-      <p>
-        Programming languages all have built-in data structures, but these often
-        differ from one language to another. This article attempts to list the
-        built-in data structures available in JavaScript and what properties
-        they have. These can be used to build other data structures. Wherever
-        possible, comparisons with other languages are drawn. Dynamic typing
-        JavaScript is a loosely typed and dynamic language. Variables in
-        JavaScript are not directly associated with any particular value type,
-        and any variable can be assigned (and re-assigned) values of all types:
-      </p>
+      <S.PublicationCardContent>
+        <ReactMarkdown>
+          {body}
+        </ReactMarkdown>
+      </S.PublicationCardContent>
     </S.PublicationCardContainer>
   );
 }

@@ -1,14 +1,11 @@
 import { useEffect, useState } from "react";
+import { PublicationType } from "../../@types/Publication";
 import { Input } from "../../components/Input";
 import { ProfileCard } from "../../components/ProfileCard";
 import { PublicationCard } from "../../components/PublicationCard";
 import { BaseLayout } from "../../layouts/BaseLayout";
 import { api } from "../../service/api";
 import * as S from "./styles";
-
-interface PublicationType {
-  id: number;
-}
 
 export function Home() {
   const [publications, setPublications] = useState<PublicationType[]>([]);
@@ -40,7 +37,7 @@ export function Home() {
 
         <S.PublicationsContainer>
           {publications.map((publication) => (
-            <PublicationCard key={publication.id} />
+            <PublicationCard key={publication.id} data={publication} />
           ))}
         </S.PublicationsContainer>
       </S.HomeContainer>
