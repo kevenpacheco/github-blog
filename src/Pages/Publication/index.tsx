@@ -10,8 +10,42 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import * as S from "./styles";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { PublicationType } from "../../@types/Publication";
+import { api } from "../../service/api";
+import { format, formatDistanceToNow } from "date-fns";
+import ptBRLocale from "date-fns/locale/pt-BR";
+import { MarkdownToHTML } from "../../components/MarkdownToHTML";
 
 export function Publication() {
+  const { publicationId } = useParams();
+  const [publicationData, setPublicationData] =
+    useState<PublicationType | null>(null);
+
+  useEffect(() => {
+    api
+      .get(`/repos/kevenpacheco/github-blog/issues/${publicationId}`)
+      .then((response) => {
+        setPublicationData(response.data);
+      });
+  }, []);
+
+  if (!publicationData) return <div>Carregando...</div>;
+
+  const creationDateRelativeToNow = formatDistanceToNow(
+    new Date(publicationData.created_at),
+    {
+      locale: ptBRLocale,
+    }
+  );
+
+  const publishedDateFormatted = format(
+    new Date(publicationData.created_at),
+    "d 'de' LLLL 'às' HH:mm'h'",
+    { locale: ptBRLocale }
+  );
+
   return (
     <BaseLayout>
       <S.PublicationHeaderContainer>
@@ -20,46 +54,35 @@ export function Publication() {
             <FontAwesomeIcon icon={faChevronLeft} /> voltar
           </InternalLink>
 
-          <ExternalLink to="https://github.com/kevenpacheco">
+          <ExternalLink
+            to={publicationData.user.html_url || ""}
+            target="_blank"
+          >
             ver no github <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
           </ExternalLink>
         </div>
 
-        <h2>JavaScript data types and data structures</h2>
+        <h2>{publicationData.title}</h2>
 
         <div>
           <span>
-            <FontAwesomeIcon icon={faGithub} /> cameronwll
+            <FontAwesomeIcon icon={faGithub} /> {publicationData.user.login}
           </span>
+          <time
+            title={publishedDateFormatted}
+            dateTime={publicationData.created_at}
+          >
+            <FontAwesomeIcon icon={faCalendarDay} /> Há {creationDateRelativeToNow}
+          </time>
           <span>
-            <FontAwesomeIcon icon={faCalendarDay} /> Há 1 dia
-          </span>
-          <span>
-            <FontAwesomeIcon icon={faComment} /> 5 comentários
+            <FontAwesomeIcon icon={faComment} /> {publicationData.comments}{" "}
+            comentários
           </span>
         </div>
       </S.PublicationHeaderContainer>
 
       <S.PublicationContent>
-        <p>
-          Programming languages all have built-in data structures, but these
-          often differ from one language to another. This article attempts to
-          list the built-in data structures available in JavaScript and what
-          properties they have. These can be used to build other data
-          structures. Wherever possible, comparisons with other languages are
-          drawn. Dynamic typing JavaScript is a loosely typed and dynamic
-          language. Variables in JavaScript are not directly associated with any
-          particular value type, and any variable can be assigned (and
-          re-assigned) values of all types:
-        </p>
-
-        <pre>
-          <code>
-{`let foo = 42;  // foo is now a number
-foo = ‘bar’;   // foo is now a string
-foo = true;    // foo is now a boolean`}
-          </code>
-        </pre>
+        <MarkdownToHTML MDText={publicationData.body} />
       </S.PublicationContent>
     </BaseLayout>
   );

@@ -33,10 +33,7 @@ export const PublicationCardContainer = styled(Link)`
       white-space: nowrap;
     }
   }
-
-  div {
-  }
-  `;
+`;
 
 export const PublicationCardContent = styled.div`
   margin-top: 1.25rem;
@@ -44,29 +41,4 @@ export const PublicationCardContent = styled.div`
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 4;
   overflow: hidden;
-
-  ul, p, h2, h3 {
-    margin-bottom: 16px;
-  }
-
-  h2, h3 {
-    margin-top: 24px;
-  }
-
-  ul {
-    padding-left: 28px;
-  }
-
-  h2 {
-    border-bottom: 1px solid #21262d;
-  }
-
-  a {
-    color: #58a6ff;
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
 `;

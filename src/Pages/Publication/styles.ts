@@ -25,7 +25,7 @@ export const PublicationHeaderContainer = styled.header`
     gap: 2rem;
     margin-top: .5rem;
 
-    span {
+    span, time {
       display: flex;
       align-items: center;
       gap: .5rem;

@@ -2,14 +2,14 @@ import { PublicationType } from "../../@types/Publication";
 import * as S from "./styles";
 import { format, formatDistanceToNow } from 'date-fns'
 import ptBRLocale from 'date-fns/locale/pt-BR'
-import ReactMarkdown from 'react-markdown'
+import { MarkdownToHTML } from "../MarkdownToHTML";
 
 interface PublicationCardPropType {
   data: PublicationType
 }
 
 export function PublicationCard({ data }: PublicationCardPropType) {
-  const { title, created_at, body } = data;
+  const { title, created_at, body, number } = data;
 
   const creationDateRelativeToNow = formatDistanceToNow(new Date(created_at), {
     locale: ptBRLocale,
@@ -22,7 +22,7 @@ export function PublicationCard({ data }: PublicationCardPropType) {
   );
 
   return (
-    <S.PublicationCardContainer to="/publicacao">
+    <S.PublicationCardContainer to={`/publicacao/${number}`}>
       <header>
         <h3>{title}</h3>
 
@@ -30,14 +30,12 @@ export function PublicationCard({ data }: PublicationCardPropType) {
           title={publishedDateFormatted}
           dateTime={created_at}
         >
-          {creationDateRelativeToNow}
+          Há {creationDateRelativeToNow}
         </time>
       </header>
 
       <S.PublicationCardContent>
-        <ReactMarkdown>
-          {body}
-        </ReactMarkdown>
+        <MarkdownToHTML MDText={body} />
       </S.PublicationCardContent>
     </S.PublicationCardContainer>
   );
