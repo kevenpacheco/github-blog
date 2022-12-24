@@ -9,16 +9,7 @@ import { ExternalLink } from "../Links/External";
 import * as S from "./styles";
 import { useEffect, useState } from "react";
 import { api } from "../../service/api";
-
-interface ProfileType {
-  avatar_url: string;
-  name: string;
-  html_url: string;
-  bio: string;
-  login: string;
-  company: string;
-  followers: number;
-}
+import { ProfileType } from "../../@types/Profile";
 
 export function ProfileCard() {
   const [profile, setProfile] = useState<ProfileType | null>(null);
