@@ -7,7 +7,7 @@ export function AppRoutes() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/publicacao" element={<Publication />} />
+        <Route path="/publicacao/:publicationId" element={<Publication />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
