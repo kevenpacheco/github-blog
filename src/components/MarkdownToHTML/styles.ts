@@ -57,4 +57,16 @@ export const MarkdownToHTMLContainer = styled.div`
   & > *:last-child {
     margin-bottom: 0;
   }
+
+  pre {
+    background: ${({ theme }) => theme.colors.base.post};
+    padding: 1rem;
+    border-radius: 2px;
+    margin-bottom: 1rem;
+    overflow: auto;
+
+    code {
+      font-family: 'Fira Code'
+    }
+  }
 `;

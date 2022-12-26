@@ -41,15 +41,4 @@ export const PublicationHeaderContainer = styled.header`
 
 export const PublicationContent = styled.main`
   padding: 2.5rem 2rem;
-
-  pre {
-    background: ${({ theme }) => theme.colors.base.post};
-    padding: 1rem;
-    border-radius: 2px;
-    margin-top: 1.5rem;
-
-    code {
-      font-family: 'Fira Code'
-    }
-  }
 `;
