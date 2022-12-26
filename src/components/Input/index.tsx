@@ -1,7 +1,12 @@
+import { InputHTMLAttributes } from 'react';
 import * as S from './styles';
 
-export function Input() {
+interface InputPropsType extends InputHTMLAttributes<HTMLInputElement> {
+
+}
+
+export function Input(props: InputPropsType) {
   return (
-    <S.InputContainer type="text" placeholder="Buscar conteúdo" />
+    <S.InputContainer type="text" placeholder="Buscar conteúdo" {...props} />
   )
 }
