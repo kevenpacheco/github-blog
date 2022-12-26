@@ -44,4 +44,5 @@ export const PublicationCardContent = styled.div`
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 4;
   overflow: hidden;
+  pointer-events: none;
 `;
