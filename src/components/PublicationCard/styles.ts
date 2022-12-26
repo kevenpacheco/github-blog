@@ -18,8 +18,9 @@ export const PublicationCardContainer = styled(Link)`
   header {
     display: flex;
     align-items: flex-start;
+    flex-direction: column;
     justify-content: space-between;
-    gap: 1.5rem;
+    gap: 4px;
 
     h3 {
       color: ${({ theme }) => theme.colors.base.title};
@@ -27,10 +28,12 @@ export const PublicationCardContainer = styled(Link)`
       flex: 1;
     }
 
-    span {
+    time {
       color: ${({ theme }) => theme.colors.base.span};
-      font-size: .875rem;
+      font-size: 12px;
       white-space: nowrap;
+      margin-left: auto;
+      line-height: normal;
     }
   }
 `;

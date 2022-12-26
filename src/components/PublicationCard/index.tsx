@@ -24,14 +24,14 @@ export function PublicationCard({ data }: PublicationCardPropType) {
   return (
     <S.PublicationCardContainer to={`/publicacao/${number}`}>
       <header>
-        <h3>{title}</h3>
-
         <time
           title={publishedDateFormatted}
           dateTime={created_at}
         >
           Há {creationDateRelativeToNow}
         </time>
+
+        <h3>{title}</h3>
       </header>
 
       <S.PublicationCardContent>
