@@ -3,7 +3,6 @@ import { PublicationType } from "../../@types/Publication";
 import { Input } from "../../components/Input";
 import { ProfileCard } from "../../components/ProfileCard";
 import { PublicationCard } from "../../components/PublicationCard";
-import { BaseLayout } from "../../layouts/BaseLayout";
 import { api } from "../../service/api";
 import * as S from "./styles";
 
@@ -27,7 +26,7 @@ export function Home() {
   }, [searchText]);
 
   return (
-    <BaseLayout>
+    <>
       <ProfileCard />
 
       <S.HomeContainer>
@@ -50,6 +49,6 @@ export function Home() {
           ))}
         </S.PublicationsContainer>
       </S.HomeContainer>
-    </BaseLayout>
+    </>
   );
 }

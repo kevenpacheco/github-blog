@@ -1,10 +1,15 @@
-import { ReactNode } from "react";
+import { Outlet } from "react-router-dom";
+import { Header } from "../../components/Header";
 import * as S from "./styles";
 
-interface BaseLayoutPropsType {
-  children: ReactNode;
-}
+export function BaseLayout() {
+  return (
+    <>
+      <Header />
 
-export function BaseLayout({ children }: BaseLayoutPropsType) {
-  return <S.BaseLayoutContainer>{children}</S.BaseLayoutContainer>;
+      <S.BaseLayoutContainer>
+        <Outlet />
+      </S.BaseLayoutContainer>
+    </>
+  );
 }

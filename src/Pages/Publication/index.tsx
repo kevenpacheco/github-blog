@@ -1,6 +1,5 @@
 import { ExternalLink } from "../../components/Links/External";
 import { InternalLink } from "../../components/Links/Internal";
-import { BaseLayout } from "../../layouts/BaseLayout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowUpRightFromSquare,
@@ -47,7 +46,7 @@ export function Publication() {
   );
 
   return (
-    <BaseLayout>
+    <>
       <S.PublicationHeaderContainer>
         <div>
           <InternalLink to="/">
@@ -84,6 +83,6 @@ export function Publication() {
       <S.PublicationContent>
         <MarkdownToHTML MDText={publicationData.body} />
       </S.PublicationContent>
-    </BaseLayout>
+    </>
   );
 }
