@@ -58,15 +58,11 @@ export const MarkdownToHTMLContainer = styled.div`
     margin-bottom: 0;
   }
 
-  pre {
+  & > pre {
     background: ${({ theme }) => theme.colors.base.post};
     padding: 1rem;
     border-radius: 2px;
     margin-bottom: 1rem;
     overflow: auto;
-
-    code {
-      font-family: 'Fira Code'
-    }
   }
 `;
