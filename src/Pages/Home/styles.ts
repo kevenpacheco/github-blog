@@ -27,22 +27,6 @@ export const SearchContainer = styled.form`
     display: flex;
     align-items: center;
     gap: 1rem;
-
-    button[type="submit"] {
-      padding: 12px 16px;
-      background: ${({theme}) => theme.colors.base.post};
-      border: 1px solid ${({theme}) => theme.colors.base.border};
-      border-radius: 6px;
-      color: ${({theme}) => theme.colors.base.title};
-      cursor: pointer;
-      font-weight: bold;
-
-      &:hover {
-        transition: 0.3s;
-        border-color: ${({ theme }) => theme.colors.blue};
-        box-shadow: 0 0 20px ${({ theme }) => theme.colors.blue};
-      }
-    }
   }
 `;
 

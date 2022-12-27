@@ -1,5 +1,6 @@
 import { FormEvent, useEffect, useState } from "react";
 import { PublicationType } from "../../@types/Publication";
+import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 import { ProfileCard } from "../../components/ProfileCard";
 import { PublicationCard } from "../../components/PublicationCard";
@@ -39,7 +40,7 @@ export function Home() {
 
           <div>
             <Input id="search" name="search" />
-            <button type="submit">Buscar</button>
+            <Button type="submit">Buscar</Button>
           </div>
         </S.SearchContainer>
 
