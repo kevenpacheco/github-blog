@@ -4,10 +4,12 @@ import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 import { ProfileCard } from "../../components/ProfileCard";
 import { PublicationCard } from "../../components/PublicationCard";
+import { useUser } from "../../hooks/useUser";
 import { api } from "../../service/api";
 import * as S from "./styles";
 
 export function Home() {
+  const user = useUser();
   const [publications, setPublications] = useState<PublicationType[]>([]);
   const [publicationCount, setPublicationCount] = useState(0);
   const [searchText, setSearchText] = useState("");
@@ -18,9 +20,7 @@ export function Home() {
   }
 
   useEffect(() => {
-    const repo = "kevenpacheco/github-blog";
-
-    api.get(`/search/issues?q=${searchText} repo:${repo}`).then((response) => {
+    api.get(`/search/issues?q=${searchText} user:${user?.login} type:issue`).then((response) => {
       setPublications(response.data.items);
       setPublicationCount(response.data.total_count);
     });

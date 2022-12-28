@@ -7,48 +7,42 @@ import {
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { ExternalLink } from "../Links/External";
 import * as S from "./styles";
-import { useEffect, useState } from "react";
-import { api } from "../../service/api";
-import { ProfileType } from "../../@types/Profile";
+import { useUser } from "../../hooks/useUser";
 
 export function ProfileCard() {
-  const [profile, setProfile] = useState<ProfileType | null>(null);
-
-  useEffect(() => {
-    api.get("/users/kevenpacheco").then((response) => setProfile(response.data));
-  }, []);
+  const user = useUser();
 
   return (
     <S.ProfileCardContainer>
-      <img src={profile?.avatar_url} height="148" width="148" />
+      <img src={user?.avatar_url} height="148" width="148" />
 
       <div>
         <header>
-          <h2>{profile?.name}</h2>
+          <h2>{user?.name}</h2>
 
-          <ExternalLink to={profile?.html_url || ""} target="_blank">
+          <ExternalLink to={user?.html_url || ""} target="_blank">
             github <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
           </ExternalLink>
         </header>
 
-        <p>{profile?.bio}</p>
+        <p>{user?.bio}</p>
 
         <footer>
           <S.GithubContainer>
             <FontAwesomeIcon icon={faGithub} size="lg" />
-            {profile?.login}
+            {user?.login}
           </S.GithubContainer>
 
-          {!!profile?.company && (
+          {!!user?.company && (
             <S.CompanyContainer>
               <FontAwesomeIcon icon={faBuilding} />
-              {profile?.company}
+              {user?.company}
             </S.CompanyContainer>
           )}
 
           <S.FollowersContainer>
             <FontAwesomeIcon icon={faUserGroup} />
-            {`${profile?.followers} seguidores`}
+            {`${user?.followers} seguidores`}
           </S.FollowersContainer>
         </footer>
       </div>
