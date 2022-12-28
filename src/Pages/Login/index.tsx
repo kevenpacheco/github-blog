@@ -15,15 +15,11 @@ export function Login() {
   });
 
   useEffect(() => {
-    const url = window.location.href;
-    const hasCode = url.includes("?code=");
+    const code = new URLSearchParams(window.location.search).get('code');
 
-    if (hasCode) {
-      const newUrl = url.split("?code=");
-      window.history.pushState({}, "", newUrl[0]);
-
+    if (code) {
       const accessTokenRequestParams = new URLSearchParams({
-        code: newUrl[1],
+        code,
         client_id: import.meta.env.VITE_GITHUB_CLIENT_ID,
         client_secret: import.meta.env.VITE_GITHUB_CLIENT_SECRET,
       });
