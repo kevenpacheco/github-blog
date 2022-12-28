@@ -8,6 +8,8 @@ export const ButtonContainer = styled.button`
   color: ${({ theme }) => theme.colors.base.title};
   cursor: pointer;
   font-weight: bold;
+  text-align: center;
+  text-decoration: none;
 
   &:hover {
     transition: 0.3s;
