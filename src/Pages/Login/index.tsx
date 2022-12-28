@@ -3,6 +3,7 @@ import * as S from "./styles";
 import logoSVG from "../../assets/logo.svg";
 import { useEffect } from "react";
 import { useAuth } from "../../hooks/useAuth";
+import axios from "axios";
 
 export function Login() {
   const auth = useAuth();
@@ -21,7 +22,22 @@ export function Login() {
       const newUrl = url.split("?code=");
       window.history.pushState({}, "", newUrl[0]);
 
-      auth.getAccessToken("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");
+      const accessTokenRequestParams = new URLSearchParams({
+        code: newUrl[1],
+        client_id: import.meta.env.VITE_GITHUB_CLIENT_ID,
+        client_secret: import.meta.env.VITE_GITHUB_CLIENT_SECRET,
+      });
+      axios
+        .post(
+          `https://github.com/login/oauth/access_token?${accessTokenRequestParams}`,
+          null,
+          {
+            headers: {
+              Accept: "application/json",
+            },
+          }
+        )
+        .then((response) => auth.getAccessToken(response.data.access_token));
     }
   }, [auth.getAccessToken]);
 
