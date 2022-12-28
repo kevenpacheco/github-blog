@@ -1,11 +1,11 @@
-import { PublicationType } from "../../@types/Publication";
 import * as S from "./styles";
 import { format, formatDistanceToNow } from 'date-fns'
 import ptBRLocale from 'date-fns/locale/pt-BR'
 import { MarkdownToHTML } from "../MarkdownToHTML";
+import { PublicationCardType } from "../../@types/PublicationCard";
 
 interface PublicationCardPropType {
-  data: PublicationType
+  data: PublicationCardType
 }
 
 export function PublicationCard({ data }: PublicationCardPropType) {

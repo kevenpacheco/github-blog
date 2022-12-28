@@ -1,5 +1,5 @@
 import { FormEvent, useEffect, useState } from "react";
-import { PublicationType } from "../../@types/Publication";
+import { PublicationCardType } from "../../@types/PublicationCard";
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 import { ProfileCard } from "../../components/ProfileCard";
@@ -10,7 +10,7 @@ import * as S from "./styles";
 
 export function Home() {
   const user = useUser();
-  const [publications, setPublications] = useState<PublicationType[]>([]);
+  const [publications, setPublications] = useState<PublicationCardType[]>([]);
   const [publicationCount, setPublicationCount] = useState(0);
   const [searchText, setSearchText] = useState("");
 
