@@ -7,10 +7,18 @@ import {
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { ExternalLink } from "../Links/External";
 import * as S from "./styles";
-import { useUser } from "../../hooks/useUser";
+import { useEffect, useState } from "react";
+import { api } from "../../service/api";
+import { ProfileType } from "../../@types/Profile";
 
 export function ProfileCard() {
-  const user = useUser();
+  const [user, setUser] = useState<ProfileType | null>(null);
+
+  useEffect(() => {
+    api.get(`/users/${import.meta.env.VITE_GITHUB_USER}`).then((response) => {
+      setUser(response.data);
+    });
+  }, []);
 
   return (
     <S.ProfileCardContainer>

@@ -24,7 +24,11 @@ export function Publication() {
 
   useEffect(() => {
     api
-      .get(`/repos/kevenpacheco/github-blog/issues/${publicationId}`)
+      .get(
+        `/repos/${
+          import.meta.env.VITE_GITHUB_USER
+        }/github-blog/issues/${publicationId}`
+      )
       .then((response) => {
         setPublicationData(response.data);
       });
@@ -71,7 +75,8 @@ export function Publication() {
             title={publishedDateFormatted}
             dateTime={publicationData.created_at}
           >
-            <FontAwesomeIcon icon={faCalendarDay} /> Há {creationDateRelativeToNow}
+            <FontAwesomeIcon icon={faCalendarDay} /> Há{" "}
+            {creationDateRelativeToNow}
           </time>
           <span>
             <FontAwesomeIcon icon={faComment} /> {publicationData.comments}{" "}

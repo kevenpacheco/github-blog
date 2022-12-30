@@ -4,12 +4,10 @@ import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 import { ProfileCard } from "../../components/ProfileCard";
 import { PublicationCard } from "../../components/PublicationCard";
-import { useUser } from "../../hooks/useUser";
 import { api } from "../../service/api";
 import * as S from "./styles";
 
 export function Home() {
-  const user = useUser();
   const [publications, setPublications] = useState<PublicationCardType[]>([]);
   const [publicationCount, setPublicationCount] = useState(0);
   const [searchText, setSearchText] = useState("");
@@ -20,10 +18,16 @@ export function Home() {
   }
 
   useEffect(() => {
-    api.get(`/search/issues?q=${searchText} user:${user?.login} type:issue`).then((response) => {
-      setPublications(response.data.items);
-      setPublicationCount(response.data.total_count);
-    });
+    api
+      .get(
+        `/search/issues?q=${searchText} repo:${
+          import.meta.env.VITE_GITHUB_USER
+        }/github-blog`
+      )
+      .then((response) => {
+        setPublications(response.data.items);
+        setPublicationCount(response.data.total_count);
+      });
   }, [searchText]);
 
   return (
