@@ -16,13 +16,16 @@ import { api } from "../../service/api";
 import { format, formatDistanceToNow } from "date-fns";
 import ptBRLocale from "date-fns/locale/pt-BR";
 import { MarkdownToHTML } from "../../components/MarkdownToHTML";
+import { PublicationLoading } from "./PublicationLoading";
 
 export function Publication() {
   const { publicationId } = useParams();
   const [publicationData, setPublicationData] =
     useState<PublicationType | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    setIsLoading(true);
     api
       .get(
         `/repos/${
@@ -31,10 +34,17 @@ export function Publication() {
       )
       .then((response) => {
         setPublicationData(response.data);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, []);
 
-  if (!publicationData) return <div>Carregando...</div>;
+  if (isLoading) {
+    return <PublicationLoading />;
+  }
+
+  if (!publicationData) return <div>Sem conteúdo...</div>;
 
   const creationDateRelativeToNow = formatDistanceToNow(
     new Date(publicationData.created_at),

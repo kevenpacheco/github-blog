@@ -10,15 +10,28 @@ import * as S from "./styles";
 import { useEffect, useState } from "react";
 import { api } from "../../service/api";
 import { ProfileType } from "../../@types/Profile";
+import { ProfileCardLoading } from "./ProfileCardLoading";
 
 export function ProfileCard() {
   const [user, setUser] = useState<ProfileType | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    api.get(`/users/${import.meta.env.VITE_GITHUB_USER}`).then((response) => {
-      setUser(response.data);
-    });
+    setIsLoading(true);
+
+    api
+      .get(`/users/${import.meta.env.VITE_GITHUB_USER}`)
+      .then((response) => {
+        setUser(response.data);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, []);
+
+  if (isLoading) {
+    return <ProfileCardLoading />
+  }
 
   return (
     <S.ProfileCardContainer>

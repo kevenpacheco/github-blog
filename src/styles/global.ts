@@ -26,4 +26,22 @@ export const GlobalStyles = createGlobalStyle`
   h1, h2, h3, h4, h5, h6 {
     color: ${({ theme }) => theme.colors.base.title}
   }
+
+  @keyframes shimmer {
+    0% {
+      background-position-x: 100%;
+    }
+    
+    100% {
+      background-position-x: -100%;
+    }
+  }
+
+  .loading {
+    background-image: linear-gradient(to right, ${({ theme }) => theme.colors.base.background} 30%, ${({ theme }) => theme.colors.base.border} 50%, ${({ theme }) => theme.colors.base.background} 70%);
+    background-size: 200% 100%;
+    animation: shimmer 1s infinite linear;
+    width: 100%;
+    color: transparent !important;
+  }
 `;
