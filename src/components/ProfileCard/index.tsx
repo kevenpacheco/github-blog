@@ -37,7 +37,7 @@ export function ProfileCard() {
     <S.ProfileCardContainer>
       <img src={user?.avatar_url} height="148" width="148" />
 
-      <div>
+      <div className="content">
         <header>
           <h2>{user?.name}</h2>
 

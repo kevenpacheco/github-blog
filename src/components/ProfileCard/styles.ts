@@ -7,7 +7,6 @@ export const ProfileCardContainer = styled.section`
   padding: 2rem;
   padding-left: 2.5rem;
   display: flex;
-  align-items: center;
   gap: 2rem;
 
   img {
@@ -15,6 +14,11 @@ export const ProfileCardContainer = styled.section`
     height: 9.25rem;
     border-radius: 8px;
     object-fit: cover;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
   }
 
   header {
@@ -30,6 +34,7 @@ export const ProfileCardContainer = styled.section`
 
   p {
     margin-top: .5rem;
+    flex: 1;
   }
 
   footer {
