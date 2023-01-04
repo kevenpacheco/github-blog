@@ -28,13 +28,16 @@ The application uses concepts such as:
 ## 🚀 Step by step to use the application
 
 1 - Install the dependencies:
-
 ```
   npm install
 ```
 
-2 - Run the web aplication in development mode:
+2 - Create an ``.env`` file with your github username:
+```
+  VITE_GITHUB_USER=""
+```
 
+3 - Run the web aplication in development mode:
 ```
   npm run dev
 ```
