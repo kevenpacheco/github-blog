@@ -2,7 +2,7 @@ import * as S from "./styles";
 
 export function ProfileCardLoading() {
   return (
-    <S.ProfileCardLoadingContainer>
+    <S.ProfileCardLoadingContainer data-testid="Profile-card-loading-component">
       <div className="img loading" />
 
       <div className="content">

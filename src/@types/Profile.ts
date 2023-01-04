@@ -4,6 +4,6 @@ export interface ProfileType {
   html_url: string;
   bio: string;
   login: string;
-  company: string;
+  company: string | null;
   followers: number;
 }
